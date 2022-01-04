@@ -7,7 +7,7 @@ PBKDF2_ITERATIONS  = 50000
 
 password = ""
 encryption_iv = ""
-encryption_salt = "="
+encryption_salt = ""
 encryptedData = ""
 
 def get_encryption_key(password: str, salt: str):
@@ -15,7 +15,7 @@ def get_encryption_key(password: str, salt: str):
     return KDF.PBKDF2(password, b64decode(encryption_salt), dkLen=KEY_SIZE_BYTES, count=PBKDF2_ITERATIONS)
 
 
-def decrypt(data):
+def decrypt(data: str):
     #based on https://github.com/Jessecar96/SteamDesktopAuthenticator/blob/8a408f13ee24f70fffbc409cb0e050e924f4fe94/Steam%20Desktop%20Authenticator/FileEncryptor.cs#L87
     cipher_text = b64decode(data)
     key = get_encryption_key(password, encryption_salt)
@@ -34,8 +34,6 @@ def decrypt(data):
 def main():
     plain_text = decrypt(encryptedData)
     print(plain_text)
-    
-    
     
 if __name__ == "__main__":
     main()
