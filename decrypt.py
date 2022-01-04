@@ -2,8 +2,6 @@ from base64 import b64encode, b64decode
 from Crypto.Cipher import AES
 from Crypto.Protocol import KDF
 
-file_path = "F:\\Code shit\\sda_decrypt\\config\\"
-
 KEY_SIZE_BYTES = 32;
 PBKDF2_ITERATIONS  = 50000
 
